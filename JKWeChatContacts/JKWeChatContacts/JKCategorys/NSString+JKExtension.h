@@ -12,4 +12,5 @@
 
 - (NSString *)pinyin;
 - (CGSize)sizeWithFont:(UIFont *)font;
++ (NSString *)pathWithDatabaseName:(NSString *)databaseName;
 @end

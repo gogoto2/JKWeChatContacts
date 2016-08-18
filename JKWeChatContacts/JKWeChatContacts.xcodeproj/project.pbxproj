@@ -34,6 +34,13 @@
 		9F8157B51D61984400AEAA24 /* JKSearchResultsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F8157B41D61984400AEAA24 /* JKSearchResultsController.m */; };
 		9F8157B81D619D9200AEAA24 /* UIImage+JKExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F8157B71D619D9200AEAA24 /* UIImage+JKExtension.m */; };
 		9F8157BE1D61A00300AEAA24 /* JKViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F8157BD1D61A00300AEAA24 /* JKViewController.m */; };
+		9F98B6AB1D65C2E80039EC6F /* NSObject+JKRuntimeExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F98B6AA1D65C2E80039EC6F /* NSObject+JKRuntimeExtension.m */; };
+		9F98B6BA1D65C6070039EC6F /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F98B6B01D65C6070039EC6F /* FMDatabase.m */; };
+		9F98B6BB1D65C6070039EC6F /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F98B6B21D65C6070039EC6F /* FMDatabaseAdditions.m */; };
+		9F98B6BC1D65C6070039EC6F /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F98B6B41D65C6070039EC6F /* FMDatabasePool.m */; };
+		9F98B6BD1D65C6070039EC6F /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F98B6B61D65C6070039EC6F /* FMDatabaseQueue.m */; };
+		9F98B6BE1D65C6070039EC6F /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F98B6B91D65C6070039EC6F /* FMResultSet.m */; };
+		9F98B6C11D65CA280039EC6F /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F98B6C01D65CA280039EC6F /* libsqlite3.tbd */; };
 		9FFBC2761D5D99690040B061 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FFBC2671D5D99690040B061 /* AppDelegate.m */; };
 		9FFBC2771D5D99690040B061 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9FFBC2681D5D99690040B061 /* Assets.xcassets */; };
 		9FFBC2781D5D99690040B061 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9FFBC2691D5D99690040B061 /* LaunchScreen.storyboard */; };
@@ -99,6 +106,22 @@
 		9F8157B71D619D9200AEAA24 /* UIImage+JKExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+JKExtension.m"; sourceTree = "<group>"; };
 		9F8157BC1D61A00300AEAA24 /* JKViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKViewController.h; sourceTree = "<group>"; };
 		9F8157BD1D61A00300AEAA24 /* JKViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKViewController.m; sourceTree = "<group>"; };
+		9F98B6A91D65C2E80039EC6F /* NSObject+JKRuntimeExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+JKRuntimeExtension.h"; sourceTree = "<group>"; };
+		9F98B6AA1D65C2E80039EC6F /* NSObject+JKRuntimeExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+JKRuntimeExtension.m"; sourceTree = "<group>"; };
+		9F98B6AD1D65C4960039EC6F /* JKHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKHeader.pch; sourceTree = "<group>"; };
+		9F98B6AF1D65C6070039EC6F /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
+		9F98B6B01D65C6070039EC6F /* FMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabase.m; sourceTree = "<group>"; };
+		9F98B6B11D65C6070039EC6F /* FMDatabaseAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseAdditions.h; sourceTree = "<group>"; };
+		9F98B6B21D65C6070039EC6F /* FMDatabaseAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseAdditions.m; sourceTree = "<group>"; };
+		9F98B6B31D65C6070039EC6F /* FMDatabasePool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabasePool.h; sourceTree = "<group>"; };
+		9F98B6B41D65C6070039EC6F /* FMDatabasePool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabasePool.m; sourceTree = "<group>"; };
+		9F98B6B51D65C6070039EC6F /* FMDatabaseQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseQueue.h; sourceTree = "<group>"; };
+		9F98B6B61D65C6070039EC6F /* FMDatabaseQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseQueue.m; sourceTree = "<group>"; };
+		9F98B6B71D65C6070039EC6F /* FMDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDB.h; sourceTree = "<group>"; };
+		9F98B6B81D65C6070039EC6F /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMResultSet.h; sourceTree = "<group>"; };
+		9F98B6B91D65C6070039EC6F /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMResultSet.m; sourceTree = "<group>"; };
+		9F98B6BF1D65C81E0039EC6F /* JKImportHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKImportHeader.h; sourceTree = "<group>"; };
+		9F98B6C01D65CA280039EC6F /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		9FFBC2661D5D99690040B061 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		9FFBC2671D5D99690040B061 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		9FFBC2681D5D99690040B061 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -116,6 +139,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9F98B6C11D65CA280039EC6F /* libsqlite3.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -125,6 +149,7 @@
 		9F3CFDB41D518C3B0046C57B = {
 			isa = PBXGroup;
 			children = (
+				9F98B6C01D65CA280039EC6F /* libsqlite3.tbd */,
 				9FFBC2651D5D99690040B061 /* JKWeChatContacts */,
 				9F3CFDBE1D518C3B0046C57B /* Products */,
 			);
@@ -223,6 +248,24 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		9F98B6AE1D65C6070039EC6F /* FMDatabase */ = {
+			isa = PBXGroup;
+			children = (
+				9F98B6AF1D65C6070039EC6F /* FMDatabase.h */,
+				9F98B6B01D65C6070039EC6F /* FMDatabase.m */,
+				9F98B6B11D65C6070039EC6F /* FMDatabaseAdditions.h */,
+				9F98B6B21D65C6070039EC6F /* FMDatabaseAdditions.m */,
+				9F98B6B31D65C6070039EC6F /* FMDatabasePool.h */,
+				9F98B6B41D65C6070039EC6F /* FMDatabasePool.m */,
+				9F98B6B51D65C6070039EC6F /* FMDatabaseQueue.h */,
+				9F98B6B61D65C6070039EC6F /* FMDatabaseQueue.m */,
+				9F98B6B71D65C6070039EC6F /* FMDB.h */,
+				9F98B6B81D65C6070039EC6F /* FMResultSet.h */,
+				9F98B6B91D65C6070039EC6F /* FMResultSet.m */,
+			);
+			path = FMDatabase;
+			sourceTree = "<group>";
+		};
 		9FFBC2651D5D99690040B061 /* JKWeChatContacts */ = {
 			isa = PBXGroup;
 			children = (
@@ -239,6 +282,8 @@
 				9FFBC2681D5D99690040B061 /* Assets.xcassets */,
 				9FFBC26D1D5D99690040B061 /* Info.plist */,
 				9FFBC2751D5D99690040B061 /* main.m */,
+				9F98B6AD1D65C4960039EC6F /* JKHeader.pch */,
+				9F98B6BF1D65C81E0039EC6F /* JKImportHeader.h */,
 				9FFBC26B1D5D99690040B061 /* Main.storyboard */,
 				9FFBC2691D5D99690040B061 /* LaunchScreen.storyboard */,
 			);
@@ -248,6 +293,8 @@
 		9FFBC2801D5D9BFE0040B061 /* JKCategorys */ = {
 			isa = PBXGroup;
 			children = (
+				9F98B6A91D65C2E80039EC6F /* NSObject+JKRuntimeExtension.h */,
+				9F98B6AA1D65C2E80039EC6F /* NSObject+JKRuntimeExtension.m */,
 				9F8157631D616ED500AEAA24 /* NSString+JKExtension.h */,
 				9F8157641D616ED500AEAA24 /* NSString+JKExtension.m */,
 				9F8157B61D619D9200AEAA24 /* UIImage+JKExtension.h */,
@@ -259,6 +306,7 @@
 		9FFBC2B91D5DBCC30040B061 /* JKDataBase */ = {
 			isa = PBXGroup;
 			children = (
+				9F98B6AE1D65C6070039EC6F /* FMDatabase */,
 				9FFBC2BA1D5DC04D0040B061 /* JKDatabseManager.h */,
 				9FFBC2BB1D5DC04D0040B061 /* JKDatabseManager.m */,
 			);
@@ -345,6 +393,8 @@
 				9F8157911D618B7E00AEAA24 /* SDWebImageDownloaderOperation.m in Sources */,
 				9F8157B81D619D9200AEAA24 /* UIImage+JKExtension.m in Sources */,
 				9F8157A11D6191A800AEAA24 /* JKContactsModel.m in Sources */,
+				9F98B6AB1D65C2E80039EC6F /* NSObject+JKRuntimeExtension.m in Sources */,
+				9F98B6BE1D65C6070039EC6F /* FMResultSet.m in Sources */,
 				9F8157921D618B7E00AEAA24 /* SDWebImageManager.m in Sources */,
 				9FFBC2BC1D5DC04D0040B061 /* JKDatabseManager.m in Sources */,
 				9F8157901D618B7E00AEAA24 /* SDWebImageDownloader.m in Sources */,
@@ -352,18 +402,22 @@
 				9F81578E1D618B7E00AEAA24 /* SDWebImageCompat.m in Sources */,
 				9F8157AC1D6191B000AEAA24 /* ContactDataHelper.m in Sources */,
 				9F8157931D618B7E00AEAA24 /* SDWebImagePrefetcher.m in Sources */,
+				9F98B6BC1D65C6070039EC6F /* FMDatabasePool.m in Sources */,
 				9F81579A1D618B7E00AEAA24 /* UIView+WebCacheOperation.m in Sources */,
 				9F8157AE1D6191B000AEAA24 /* JKContactsTableViewCell.m in Sources */,
 				9F8157961D618B7E00AEAA24 /* UIImage+MultiFormat.m in Sources */,
 				9F8157BE1D61A00300AEAA24 /* JKViewController.m in Sources */,
+				9F98B6BA1D65C6070039EC6F /* FMDatabase.m in Sources */,
 				9FFBC2761D5D99690040B061 /* AppDelegate.m in Sources */,
 				9F8157B51D61984400AEAA24 /* JKSearchResultsController.m in Sources */,
+				9F98B6BB1D65C6070039EC6F /* FMDatabaseAdditions.m in Sources */,
 				9F8157941D618B7E00AEAA24 /* UIButton+WebCache.m in Sources */,
 				9F81578D1D618B7E00AEAA24 /* SDImageCache.m in Sources */,
 				9F8157651D616ED500AEAA24 /* NSString+JKExtension.m in Sources */,
 				9F8157951D618B7E00AEAA24 /* UIImage+GIF.m in Sources */,
 				9F81578C1D618B7E00AEAA24 /* NSData+ImageContentType.m in Sources */,
 				9F8157B21D6191F000AEAA24 /* JKSectionTitleView.m in Sources */,
+				9F98B6BD1D65C6070039EC6F /* FMDatabaseQueue.m in Sources */,
 				9F8157971D618B7E00AEAA24 /* UIImage+WebP.m in Sources */,
 				9F8157A01D6191A800AEAA24 /* BaseObjectClass.m in Sources */,
 			);
@@ -479,6 +533,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/JKWeChatContacts/JKHeader.pch";
 				INFOPLIST_FILE = JKWeChatContacts/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -491,6 +547,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/JKWeChatContacts/JKHeader.pch";
 				INFOPLIST_FILE = JKWeChatContacts/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

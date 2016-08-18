@@ -188,8 +188,8 @@
 
 #pragma mark - 模糊查询
 - (void)updateSearchResultsForSearchController:(UISearchController *)searchController {
-    NSString * searchText = searchController.searchBar.text;
-//    self.searchResultController.searchResults = 
+//    NSString * searchText = searchController.searchBar.text;
+//    self.searchResultController.searchResults =
 }
 
 

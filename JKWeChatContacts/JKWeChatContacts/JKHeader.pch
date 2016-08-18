@@ -1,0 +1,28 @@
+//
+//  JKHeader.pch
+//  JKWeChatContacts
+//
+//  Created by 蒋鹏 on 16/8/18.
+//  Copyright © 2016年 蒋鹏. All rights reserved.
+//
+
+#ifndef JKHeader_pch
+#define JKHeader_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+#import "NSObject+JKRuntimeExtension.h"
+#import "JKDatabseManager.h"
+
+
+#import "JKImportHeader.h"
+
+#import "BaseObjectClass.h"
+
+#import "JKContactsModel.h"
+
+
+
+
+#endif /* JKHeader_pch */

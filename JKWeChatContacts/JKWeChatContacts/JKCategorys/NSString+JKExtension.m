@@ -26,4 +26,17 @@
     return [self boundingRectWithSize:maxSize options:NSStringDrawingUsesLineFragmentOrigin attributes:attrs context:nil].size;
 }
 
++ (NSString *)pathWithDatabaseName:(NSString *)databaseName{
+    NSString * cachePath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+    NSString * fullPath = [cachePath stringByAppendingPathComponent:@"JKDataBaseFile"];
+    if (![[NSFileManager defaultManager] fileExistsAtPath:fullPath]) {
+        NSError * error;
+        [[NSFileManager defaultManager]createDirectoryAtPath:fullPath withIntermediateDirectories:YES attributes:nil error:&error];
+        if (error) {
+            NSLog(@"创建数据库缓存路径失败");
+        }
+    }
+    return [fullPath stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.sqlite",databaseName]];
+}
+
 @end

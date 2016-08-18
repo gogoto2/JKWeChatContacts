@@ -10,7 +10,7 @@
 
 @interface JKDatabseManager ()
 
-
+@property (nonatomic, strong)FMDatabaseQueue * databaseQueue;
 
 @end
 
@@ -29,6 +29,95 @@
 }
 - (id)mutableCopy{
     return [JKDatabseManager sharedManager];
+}
+
+
+- (void)buildTableWithName:(NSString *)tableName modelClass:(__unsafe_unretained Class)modelClass{
+    [self.databaseQueue inDatabase:^(FMDatabase *dataBase) {
+        NSArray * propertyArray = [modelClass propertyArrayFromModel];
+        NSMutableString * excuteString = [[NSMutableString alloc]initWithString:@"create table if not exists "];
+        [excuteString appendFormat:@"%@(id INTEGER PRIMARY KEY AUTOINCREMENT",tableName];
+        for (NSInteger index = 0; index < propertyArray.count; index ++) {
+            NSString * key = propertyArray[index];
+            [excuteString appendFormat:@", %@ text",key];//ivar_getTypeEncoding
+        }
+        [excuteString appendFormat:@")"];
+        
+        BOOL result = [dataBase executeUpdate:excuteString];
+        if (!result) {
+            NSLog(@"创建表失败 %@",tableName);
+        }
+        
+    }];
+}
+
+
+- (void)insetIntoTableWithName:(NSString *)tableName withModels:(NSArray <BaseObjectClass *> *)models result:(void(^)(BOOL ret))result{
+    [self.databaseQueue inDatabase:^(FMDatabase *dataBase) {
+        
+        if (![dataBase executeUpdate:[NSString stringWithFormat:@"delete from %@",tableName]]) {
+            JKLog(@"删除表所有数据失败");
+        }
+        BOOL ret = NO;
+        
+        for (NSInteger index = 0; index < models.count; index ++) {
+            @autoreleasepool {
+                BaseObjectClass * model = models[index];
+                NSString * excuteString = [model sqlStringForInsertDatabaseWithTableName:tableName];
+                
+                ret = [dataBase executeUpdate:excuteString];
+                if (!ret) {
+                    JKLog(@"2.插入表%@失败，model:%@",tableName, model);
+                }
+            }
+        }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (result) {
+                result(ret);
+            }
+        });
+    }];
+}
+
+
+- (void)queryContactsWithResult:(JKDataBaseQueryResultBlock)result{
+    dispatch_queue_t mySerialQueue = dispatch_queue_create("im.database.contactsQuery.serialQueue", DISPATCH_QUEUE_SERIAL);
+    dispatch_async(mySerialQueue, ^{
+        typeof(self) weakself = self;
+        [self.databaseQueue inDatabase:^(FMDatabase *database) {
+            NSString * query = [NSString stringWithFormat:@"select * from %@",kJKContactsTableName];
+            [weakself queryInDatabase:database queryString:query resultModelClass:JKContactsModel.class resultBlock:result];
+        }];
+    });
+}
+
+- (void)queryInDatabase:(FMDatabase *)database queryString:(NSString *)query resultModelClass:(Class)aClass resultBlock:(JKDataBaseQueryResultBlock)result{
+    NSMutableArray * dataArray = [[NSMutableArray alloc]init];
+    
+    FMResultSet * resultSet = [database executeQuery:query];
+    NSError * error = nil;
+    while ([resultSet nextWithError:&error]) {
+        BaseObjectClass * model = [[[aClass class] alloc]init];
+        NSInteger sqliteid = (NSInteger)[resultSet longLongIntForColumn:@"id"];
+        model.sqLiteID = sqliteid;
+        NSArray * propertys = [aClass propertyArrayFromModel];
+        
+        for (NSString * key in propertys) {
+            [model setValue:[resultSet stringForColumn:key] forKey:key];
+        }
+        [dataArray addObject:model];
+    }
+    if (error) {
+        JKLog(@"数据库查询出错  %@",error);
+    }
+    [resultSet close];
+    if ([NSThread currentThread] == [NSThread mainThread]) {
+        result(dataArray);
+    }else{
+        dispatch_async(dispatch_get_main_queue(), ^{
+            result(dataArray);
+        });
+    }
 }
 
 
