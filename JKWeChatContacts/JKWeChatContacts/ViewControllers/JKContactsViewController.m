@@ -42,7 +42,7 @@
     [[JKDatabseManager sharedManager]insertIntoTableWithName:kJKContactsTableName withModels:originDatas result:nil];
     
     
-    self.navigationItem.title = @"通讯录";
+    self.navigationItem.title = @"JKWeChatContacts";
     self.view.backgroundColor = JCBGColor;
     self.tableView.backgroundColor = JCBGColor;
     self.navigationItem.titleView.backgroundColor = [UIColor whiteColor];
@@ -75,6 +75,7 @@
         searchField.autocapitalizationType = UITextAutocapitalizationTypeNone;
     }
     [self.searchController.searchBar setBackgroundImage:[UIImage imageWithRGBColor:JCBGColor imageSize:CGSizeMake(JKScreenWidth, 66)] forBarPosition:UIBarPositionAny barMetrics:UIBarMetricsDefault];
+    // searchBar左侧图标
     [self.searchController.searchBar setImage:[UIImage imageNamed:@"jk_search_icon"]
                           forSearchBarIcon:UISearchBarIconSearch
                                      state:UIControlStateNormal];
@@ -162,7 +163,7 @@
     if (indexPath.section) {
         NSArray * sectionDatas = self.dataArray[indexPath.section-1];
         JKContactsModel * model = sectionDatas[indexPath.row];
-        [cell configureCellWithModel:model];
+        [cell configureCellWithModel:model andSearchText:nil];
     }else{
         if (indexPath.row == 0) {
             [cell configureCellWithTitle:@"群聊" icon:[UIImage imageNamed:@"icon_a"]];
@@ -237,6 +238,7 @@
 - (void)updateSearchResultsForSearchController:(UISearchController *)searchController {
     NSString * searchText = searchController.searchBar.text;
     [[JKDatabseManager sharedManager]fuzzyQueryFriendListWithKeyWord:searchText result:^(NSMutableArray *dataArray) {
+        self.searchResultController.searchText = searchText;
         self.searchResultController.searchResults = dataArray.copy;
     }];
 }

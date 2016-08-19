@@ -21,7 +21,7 @@
 
 
 
-- (void)configureCellWithModel:(JKContactsModel *)model;
+- (void)configureCellWithModel:(JKContactsModel *)model andSearchText:(NSString *)searchText;
 
 - (void)configureCellWithTitle:(NSString *)title icon:(UIImage *)image;
 

@@ -3,7 +3,7 @@
 //  MJRefreshExtension
 //
 //  Created by 蒋鹏 on 16/6/14.
-//  Copyright © 2016年 深圳市见康云科技有限公司. All rights reserved.
+//  Copyright © 2016年 蒋鹏. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>

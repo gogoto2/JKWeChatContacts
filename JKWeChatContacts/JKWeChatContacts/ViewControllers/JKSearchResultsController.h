@@ -10,5 +10,6 @@
 #import "JKContactsModel.h"
 @interface JKSearchResultsController : UITableViewController
 @property (nonatomic, strong) NSArray *searchResults;
+@property (nonatomic, copy) NSString * searchText;
 @property (nonatomic, copy)void(^selectionBlock)(JKContactsModel *);
 @end

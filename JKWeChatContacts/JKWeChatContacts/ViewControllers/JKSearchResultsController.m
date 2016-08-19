@@ -46,7 +46,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     JKContactsTableViewCell *cell = [JKContactsTableViewCell cellForTableView:tableView];
-    [cell configureCellWithModel:self.searchResults[indexPath.row]];
+    [cell configureCellWithModel:self.searchResults[indexPath.row] andSearchText:self.searchText];
     return cell;
 }
 

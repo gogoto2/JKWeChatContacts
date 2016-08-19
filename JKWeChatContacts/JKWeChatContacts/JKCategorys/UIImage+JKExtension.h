@@ -17,4 +17,6 @@
                                 fillColor:(UIColor *)fillColor
                               borderColor:(UIColor *)borderColor
                               borderWidth:(CGFloat)borderWidth;
+
+- (void)roundImageWithCompletion:(void(^)(UIImage * cornerImage))block;
 @end

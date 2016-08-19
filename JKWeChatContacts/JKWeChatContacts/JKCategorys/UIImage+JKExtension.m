@@ -121,4 +121,30 @@
     return image;
 }
 
+
+- (void)roundImageWithCompletion:(void(^)(UIImage * cornerImage))block{
+    @autoreleasepool {
+        if (self == nil) return ;
+//        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            //    dispatch_async(dispatch_get_main_queue(), ^{
+            UIGraphicsBeginImageContext(self.size);
+            CGContextRef ctx = UIGraphicsGetCurrentContext();
+            CGRect rect = CGRectMake(0, 0, self.size.width, self.size.height);
+            CGContextAddEllipseInRect(ctx, rect);
+            CGContextClip(ctx);
+            [self drawInRect:rect];
+            UIImage * image = UIGraphicsGetImageFromCurrentImageContext();
+            UIGraphicsEndImageContext();
+//            dispatch_async(dispatch_get_main_queue(), ^{
+                //            self.cornerImage = YES;
+//                if (block) {
+                    block(image);
+//                }
+//            });
+//        });
+    }
+}
+
+
+
 @end
