@@ -15,11 +15,24 @@
 
 - (void)viewDidLoad{
     [super viewDidLoad];
+    [JKContactsTableViewCell registerCellWithTableView:self.tableView];
+    [JKSectionTitleView registerHeaderViewWithTableView:self.tableView];
     self.clearsSelectionOnViewWillAppear = NO;
     self.tableView.rowHeight = 61;
+    self.tableView.sectionHeaderHeight = 24;
     self.tableView.tableFooterView = UIView.new;
-    [JKContactsTableViewCell registerCellWithTableView:self.tableView];
 }
+
+
+- (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+#if TARGET_IPHONE_SIMULATOR
+    self.tableView.contentInset = UIEdgeInsetsMake(64, 0, 216, 0);
+#elif TARGET_OS_IPHONE
+    self.tableView.contentInset = UIEdgeInsetsMake(64, 0, 216+64, 0);
+#endif
+}
+
 
 
 - (void)setSearchResults:(NSArray *)searchResults{

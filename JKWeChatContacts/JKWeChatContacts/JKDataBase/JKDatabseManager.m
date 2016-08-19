@@ -52,40 +52,43 @@
 }
 
 
-- (void)insetIntoTableWithName:(NSString *)tableName withModels:(NSArray <BaseObjectClass *> *)models result:(void(^)(BOOL ret))result{
-    [self.databaseQueue inDatabase:^(FMDatabase *dataBase) {
-        
-        if (![dataBase executeUpdate:[NSString stringWithFormat:@"delete from %@",tableName]]) {
-            JKLog(@"删除表所有数据失败");
-        }
-        BOOL ret = NO;
-        
-        for (NSInteger index = 0; index < models.count; index ++) {
-            @autoreleasepool {
-                BaseObjectClass * model = models[index];
-                NSString * excuteString = [model sqlStringForInsertDatabaseWithTableName:tableName];
-                
-                ret = [dataBase executeUpdate:excuteString];
-                if (!ret) {
-                    JKLog(@"2.插入表%@失败，model:%@",tableName, model);
+- (void)insertIntoTableWithName:(NSString *)tableName withModels:(NSArray <BaseObjectClass *> *)models result:(void(^)(BOOL ret))result{
+    dispatch_queue_t insertDatasQueue = dispatch_queue_create("JK.Database.InsertDatasQueue.SerialQueue",DISPATCH_QUEUE_SERIAL);
+    dispatch_async(insertDatasQueue, ^{
+        [self.databaseQueue inDatabase:^(FMDatabase *dataBase) {
+            
+            if (![dataBase executeUpdate:[NSString stringWithFormat:@"delete from %@",tableName]]) {
+                JKLog(@"删除表所有数据失败");
+            }
+            BOOL ret = NO;
+            
+            for (NSInteger index = 0; index < models.count; index ++) {
+                @autoreleasepool {
+                    BaseObjectClass * model = models[index];
+                    NSString * excuteString = [model sqlStringForInsertDatabaseWithTableName:tableName];
+                    
+                    ret = [dataBase executeUpdate:excuteString];
+                    if (!ret) {
+                        JKLog(@"2.插入表%@失败，model:%@",tableName, model);
+                    }
                 }
             }
-        }
-        dispatch_async(dispatch_get_main_queue(), ^{
-            if (result) {
-                result(ret);
-            }
-        });
-    }];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if (result) {
+                    result(ret);
+                }
+            });
+        }];
+    });
 }
 
 
 - (void)queryContactsWithResult:(JKDataBaseQueryResultBlock)result{
-    dispatch_queue_t mySerialQueue = dispatch_queue_create("im.database.contactsQuery.serialQueue", DISPATCH_QUEUE_SERIAL);
+    dispatch_queue_t mySerialQueue = dispatch_queue_create("JK.Database.ContactsQuery.SerialQueue", DISPATCH_QUEUE_SERIAL);
     dispatch_async(mySerialQueue, ^{
         typeof(self) weakself = self;
         [self.databaseQueue inDatabase:^(FMDatabase *database) {
-            NSString * query = [NSString stringWithFormat:@"select * from %@",kJKContactsTableName];
+            NSString * query = [NSString stringWithFormat:@"select * from %@ ",kJKContactsTableName];
             [weakself queryInDatabase:database queryString:query resultModelClass:JKContactsModel.class resultBlock:result];
         }];
     });
@@ -121,4 +124,25 @@
 }
 
 
+
+- (void)fuzzyQueryFriendListWithKeyWord:(NSString *)keyword result:(JKDataBaseQueryResultBlock)result{
+    dispatch_queue_t fuzzyQueryQueue = dispatch_queue_create("JK.Database.FuzzyQueryContacts.SerialQueue",DISPATCH_QUEUE_SERIAL);
+    dispatch_async(fuzzyQueryQueue, ^{
+        WEAK(self);
+        [self.databaseQueue inDatabase:^(FMDatabase *database) {
+            NSString * query = [NSString stringWithFormat:@"select * from %@ where name like '%%%@%%' or pinyin like '%%%@%%' or phone like '%%%@%%' or count like '%%%@%%'",kJKContactsTableName,keyword,keyword,keyword,keyword];
+            [weakself queryInDatabase:database queryString:query resultModelClass:[JKContactsModel class] resultBlock:result];
+        }];
+    });
+}
+
+
+#pragma mark - 懒加载
+- (FMDatabaseQueue *)databaseQueue{
+    if (!_databaseQueue) {
+        NSString * path = [NSString pathWithDatabaseName:[NSString stringWithFormat:@"JKDatabase%zd",2016]];
+        _databaseQueue = [[FMDatabaseQueue alloc]initWithPath:path];
+    }
+    return _databaseQueue;
+}
 @end

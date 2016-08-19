@@ -46,29 +46,12 @@
 
 + (instancetype)modelWithDictionary:(NSDictionary *)dict{
     BaseObjectClass * object = [[self alloc]init];
-    for (NSString * string in [dict allKeys]) {
-        NSString * key = nil;
-        
-        if ([string isEqualToString:@"id"]) {
-            if ([object isMemberOfClass:NSClassFromString(@"AlarmModel")]){
-                key = @"aid";
-            }
-        } else if ([string isEqualToString:@"count"]) {
-            if ([object isMemberOfClass:NSClassFromString(@"IMGroupListModel")]){
-                key = @"acount";
-            }
-        } else{
-            key = [string copy];
-        }
-        
+    for (NSString * key in [dict allKeys]) {
         SEL getter = NSSelectorFromString(key);
         if ([object respondsToSelector:getter]) {
-            
-            id value = dict[string];
-            
+            id value = dict[key];
             if ([value isKindOfClass:[NSNumber class]]) {
                 [object setValue:[NSString stringWithFormat:@"%@",value] forKey:key];
-                
             }else {
                 [object setValue:value forKey:key];
             }

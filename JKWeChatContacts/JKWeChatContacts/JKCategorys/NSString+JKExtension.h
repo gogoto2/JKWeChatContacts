@@ -10,7 +10,17 @@
 #import <UIKit/UIKit.h>
 @interface NSString (JKExtension)
 
+
+
+/**    获取pinyin       */
 - (NSString *)pinyin;
+
+
+/**    计算文字的size    */
 - (CGSize)sizeWithFont:(UIFont *)font;
+
+
+
+/**    数据库路径    */
 + (NSString *)pathWithDatabaseName:(NSString *)databaseName;
 @end

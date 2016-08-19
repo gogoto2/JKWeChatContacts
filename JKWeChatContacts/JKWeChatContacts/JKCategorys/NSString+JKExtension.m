@@ -36,6 +36,8 @@
             NSLog(@"创建数据库缓存路径失败");
         }
     }
+    
+    JKLog(@"数据库路径：  %@",fullPath);
     return [fullPath stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.sqlite",databaseName]];
 }
 
